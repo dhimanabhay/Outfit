@@ -12,7 +12,7 @@ const Backdrop = () => {
       temporal
       frames={120}
       alphaTest={0.85}
-      scale={1}
+      scale={3}
       rotation={[Math.PI / 2, 0, 0]}
       position={[0, 0, -0.14]}
       resolution={1024} // Adjust the resolution
