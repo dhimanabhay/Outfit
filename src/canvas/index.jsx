@@ -13,13 +13,13 @@ const CanvasModel = () => {
       gl={{preserveDrawingBuffer: true}}
       
       //this part of shadowmap
-      shadowMap={{
-        resolution: 2048,
-        blur: 10,
-      }}
+      // shadowMap={{
+      //   resolution: 2048,
+      //   blur: 10,
+      // }}
       className='w-full max-w-full h-full transition-all ease-in'
     >
-      <ambientLight intensity={1} />
+      <ambientLight intensity={0.5} />
       <Environment preset='city' />
       <Camera>
         <Backdrop />
