@@ -15,7 +15,7 @@ const Backdrop = () => {
       scale={3}
       rotation={[Math.PI / 2, 0, 0]}
       position={[0, 0, -0.14]}
-      resolution={1024} // Adjust the resolution
+      resolution={1024}
     >
       <RandomizedLight
         amount={4}

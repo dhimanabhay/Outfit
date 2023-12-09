@@ -14,7 +14,7 @@ import { Texture } from "three";
 
 const Customizer = () => {
   const snap = useSnapshot(state);
-  
+
   const [file, setFile] = useState('');
   const [prompt, setPrompt] = useState('');
   const [generatingImg, setGeneratingImg] = useState(false);
@@ -35,10 +35,28 @@ const Customizer = () => {
           readFile={readFile}
         />
       case "aipicker":
-        return <AIPicker />
+        return <AIPicker
+          prompt={prompt}
+          setPrompt={setPrompt}
+          generatingImg={generatingImg}
+          handleSubmit={handleSubmit}
+        />
 
       default:
         return null;
+    }
+  }
+
+  const handleSubmit = async (type) => {
+    if (!prompt) return alert("Please eneter a prompt");
+
+    try {
+      
+    } catch (error) {
+      alert(error)
+    } finally {
+      setGeneratingImg(false);
+      setActiveEditorTab("");
     }
   }
 
@@ -46,19 +64,18 @@ const Customizer = () => {
     const decalType = DecalTypes[type];
     state[decalType.stateProperty] = result;
 
-    if (!activeFilterTab[decalType.filterTab])
-    {
+    if (!activeFilterTab[decalType.filterTab]) {
       handleActiveFilterTab(decalType.filterTab);
     }
   }
 
   const handleActiveFilterTab = (tabName) => {
-    switch(tabName) {
-      case "logoShirt" :
-          state.isLogoTexture = !activeFilterTab[tabName];
+    switch (tabName) {
+      case "logoShirt":
+        state.isLogoTexture = !activeFilterTab[tabName];
         break;
       case "stylishShirt":
-          state.isFullTexture = !activeFilterTab[tabName];
+        state.isFullTexture = !activeFilterTab[tabName];
         break;
       default:
         state.isFullTexture = false;
@@ -94,7 +111,7 @@ const Customizer = () => {
             <div className="flex items-center min-h-screen">
               <div className="editortabs-container tabs">
                 {EditorTabs.map((tab) => (
-                  <Tab 
+                  <Tab
                     key={tab.name}
                     tab={tab}
                     handleClick={() => setActiveEditorTab(tab.name)}
@@ -123,14 +140,14 @@ const Customizer = () => {
             {...slideAnimation('up')}
           >
             {FilterTabs.map((tab) => (
-                  <Tab 
-                    key={tab.name}
-                    tab={tab}
-                    isFilterTab
-                    isActiveTab={activeFilterTab[tab.name]}
-                    handleClick={() => handleActiveFilterTab(tab.name)}
-                  />
-                ))}
+              <Tab
+                key={tab.name}
+                tab={tab}
+                isFilterTab
+                isActiveTab={activeFilterTab[tab.name]}
+                handleClick={() => handleActiveFilterTab(tab.name)}
+              />
+            ))}
           </motion.div>
         </>
       )}
